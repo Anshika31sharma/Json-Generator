@@ -5,7 +5,7 @@ import Navbar from './component/Navbar';
 
 const App: React.FC = () => {
   const [schema, setSchema] = useState<any | null>(null);
-
+  
   useEffect(() => {
     const isDarkMode = localStorage.getItem("isDarkMode");
     if (isDarkMode === "true") {

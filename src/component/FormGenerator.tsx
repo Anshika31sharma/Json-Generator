@@ -57,7 +57,7 @@ const FormGenerator: React.FC<FormGeneratorProps> = ({ schema }) => {
       <h2 className="text-2xl font-bold mb-4">{schema.formTitle}</h2>
       {schema.formDescription && <p className="mb-4">{schema.formDescription}</p>}
       <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
-        {schema.fields.map(field => (
+        {schema.fields?.map(field => (
           <div key={field.id}>
             <label className="block mb-1 font-medium" htmlFor={field.id}>
               {field.label} {field.required && <span className="text-red-600">*</span>}
@@ -104,14 +104,17 @@ const FormGenerator: React.FC<FormGeneratorProps> = ({ schema }) => {
             {errors[field.id] && <p className="text-red-600">{field.validation?.message || 'This field is required'}</p>}
           </div>
         ))}
-       <div className=' flex justify-between'>
-       <button type="submit" className="p-2 w-20 bg-blue-600 text-white rounded">Submit</button>
-        {formData && (
-        <button onClick={handleDownload} className="p-2 bg-green-600 text-white rounded">
-          Download Data
-        </button>
-      )}
-       </div>
+     <div className="flex justify-between">
+  {schema?.fields?.length > 0 && (
+    <button type="submit" className="p-2 w-20 bg-blue-600 text-white rounded">Submit</button>
+  )}
+  {formData && (
+    <button onClick={handleDownload} className="p-2 bg-green-600 text-white rounded">
+      Download Data
+    </button>
+  )}
+</div>
+
       </form>
      
     </div>
